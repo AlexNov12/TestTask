@@ -17,12 +17,18 @@ final class ModuleProductsFactory {
     func make() -> UIViewController {
         let service = ProductService()
         
+        let router = ModuleProductsRouter(
+            factory: ModuleTransactionsFactory()
+        )
+        
         let presenter = ModuleProductsPresenter(
-            service: service
+            service: service, 
+            router: router
         )
         
         let vc = ModuleProductsViewController(presenter: presenter)
         
+        router.setRootViewController(root: vc)
         presenter.view = vc
         
         return vc

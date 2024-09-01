@@ -9,6 +9,7 @@ import Foundation
 
 protocol ProductServiceProtocol {
     func requestProducts(completion: @escaping (Result<[ProductsModel], Error>) -> ())
+    func getTransactions(for sku: String) -> [TransactionsForSKU]
 }
 
 final class ProductService: ProductServiceProtocol {
@@ -122,12 +123,15 @@ final class ProductService: ProductServiceProtocol {
         return products
     }
     
-    // Создание массива [TransactionsForSKU]
-//    private func createTransaction(from transactions: [Transaction]) -> [TransactionsForSKU] {
-//        
-//        
-//        return []
-//    }
-    
+    func getTransactions(for sku: String) -> [TransactionsForSKU] {
+        return transactions
+            .filter { $0.sku == sku }
+            .compactMap { transaction in
+                guard let amount = Double(transaction.amount),
+                      let rate = conversionInGBP[transaction.currency] else { return nil }
+                let amountInGBP = amount * rate
+                return TransactionsForSKU(sku: transaction.sku, currency: transaction.currency, amount: amount, amountInGBP: amountInGBP)
+            }
+    }
 }
 

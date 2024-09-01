@@ -36,13 +36,12 @@ final class ModuleProductsRouter:ModuleProductsRouterProtocol {
     func openModuleTransactions(sku: String, total: String, transactions: [TransactionsForSKU]) {
         
         let context = ModuleTransactionsFactory.Context(
-            sku: "sd",
-            total: "Sd",
-            transactions: []
+            sku: sku,
+            total: total,
+            transactions: transactions
         )
         
-        let viewController = factory.make()
-//        let viewController = factory.make(context: context)
+        let viewController = factory.make(context: context)
         
         root?.navigationController?.pushViewController(viewController, animated: true)
     }

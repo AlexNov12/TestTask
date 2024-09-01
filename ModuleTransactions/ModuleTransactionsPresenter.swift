@@ -16,37 +16,29 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
     
     weak var view: ModuleTransactionsViewProtocol?
 
-    var title: String { "Transactions for " }
+    var title: String { "Transactions for \(context.sku)" }
     var analiticScreenName: String { "transactions_module_screen_name" }
     
     private let service: TransactionsServiceProtocol
+    private let context: ModuleTransactionsFactory.Context
     private var model: [TransactionsForSKU]?
     
-    init(service: TransactionsServiceProtocol){
+    init(service: TransactionsServiceProtocol, context: ModuleTransactionsFactory.Context){
         self.service = service
+        self.context = context
     }
     
     func viewDidLoad() {
         view?.stopLoader()
-        service.requestTransactions { [weak self] (result: Result<[TransactionsForSKU], Error>) in
-            guard let self else { return }
-            view?.stopLoader()
-            switch result {
-            case let .success(model):
-                self.model = model
-                updateUI()
-            case .failure:
-                view?.showError()
-            }
-        }
+        updateUI()
     }
 }
 
 private extension ModuleTransactionsPresenter {
     func updateUI() {
-        guard let model = model, model.count > 0 else { return }
+//        guard let model = model, model.count > 0 else { return }
         
-        let items: [ModuleTransactionsTableViewCell.Model] = model.map {
+        let items: [ModuleTransactionsTableViewCell.Model] = context.transactions.map {
             .init(
                 currency: $0.currency,
                 startAmount: $0.amount,
@@ -54,7 +46,7 @@ private extension ModuleTransactionsPresenter {
             )
         }
         
-        let viewModel: ModuleTransactionsView.Model = .init(items: items)
+        let viewModel: ModuleTransactionsView.Model = .init(items: items, total: context.total)
         
         view?.update(model: viewModel)
         

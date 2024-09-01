@@ -15,6 +15,7 @@ final class ModuleTransactionsView: UIView {
     // Модель через которую передают все изменения во View/TableView
     struct Model {
         let items: [Item]
+        let total: String
     }
     
     private var model: Model?
@@ -53,6 +54,7 @@ final class ModuleTransactionsView: UIView {
     
     func update(model: Model) {
         self.model = model
+        totalTransactions.text = model.total
         tableView.reloadData()
     }
     
@@ -109,7 +111,7 @@ private extension ModuleTransactionsView {
     }
     
     func setupTotal() {
-        totalTransactions.text = "£300.00"
+        totalTransactions.text = model?.total ?? "£0.00"
     }
     
     func setupSubviews() {

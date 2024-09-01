@@ -16,11 +16,12 @@ final class ModuleTransactionsFactory {
         let transactions: [TransactionsForSKU]
     }
     
-    func make() -> UIViewController {
+    func make(context: Context) -> UIViewController {
         let service = TransactionsService()
         
         let presenter = ModuleTransactionsPresenter(
-            service: service
+            service: service,
+            context: context
         )
         
         let vc = ModuleTransactionsViewController(presenter: presenter)

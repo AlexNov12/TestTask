@@ -10,11 +10,13 @@ protocol ModuleProductsPresenterProtocol {
     var analiticScreenName: String { get }
     
     func viewDidLoad()
+    func tapOnProduct(sku: String)
 }
 
 final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
     
     weak var view: ModuleProductsViewProtocol?
+    private let router: ModuleProductsRouterProtocol
     
     var title: String { "Products" }
     var analiticScreenName: String { "products_module_screen_name" }
@@ -22,8 +24,17 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
     private let service: ProductServiceProtocol
     private var model: [ProductsModel]?
     
-    init(service: ProductServiceProtocol) {
+    init(service: ProductServiceProtocol, router: ModuleProductsRouterProtocol) {
         self.service = service
+        self.router = router
+    }
+    
+    // Добавим метод для обработки нажатия на продукт
+    func tapOnProduct(sku: String) {
+        guard let product = model?.first(where: { $0.sku == sku }) else { return }
+        let total = String(format: "£%.2f", product.generalAmountOfGBP)
+        let transactionsForSKU = service.getTransactions(for: sku)
+        router.openModuleTransactions(sku: sku, total: total, transactions: transactionsForSKU)
     }
     
     func viewDidLoad() {
