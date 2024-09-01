@@ -66,10 +66,6 @@
 		B35F05CE2C82DAB0008420BA = {
 			isa = PBXGroup;
 			children = (
-				B35F05EE2C82DADE008420BA /* Models */,
-				B35F05EF2C82DAF1008420BA /* Services */,
-				B35F05F02C82DB0C008420BA /* ModuleProducts */,
-				B35F06072C83A4C3008420BA /* ModuleTransactions */,
 				B35F05D92C82DAB0008420BA /* TestTask(SKU) */,
 				B35F05D82C82DAB0008420BA /* Products */,
 			);
@@ -86,6 +82,10 @@
 		B35F05D92C82DAB0008420BA /* TestTask(SKU) */ = {
 			isa = PBXGroup;
 			children = (
+				B35F05EE2C82DADE008420BA /* Models */,
+				B35F05EF2C82DAF1008420BA /* Services */,
+				B35F05F02C82DB0C008420BA /* ModuleProducts */,
+				B35F06072C83A4C3008420BA /* ModuleTransactions */,
 				B35F05DA2C82DAB0008420BA /* AppDelegate.swift */,
 				B35F05E32C82DAB2008420BA /* Assets.xcassets */,
 				B35F05E52C82DAB2008420BA /* LaunchScreen.storyboard */,
