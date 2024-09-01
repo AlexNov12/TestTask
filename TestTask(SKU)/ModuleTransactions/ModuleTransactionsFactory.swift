@@ -17,7 +17,7 @@ final class ModuleTransactionsFactory {
     }
     
     func make(context: Context) -> UIViewController {
-        let service = TransactionsService()
+        let service = ProductService()
         
         let presenter = ModuleTransactionsPresenter(
             service: service,

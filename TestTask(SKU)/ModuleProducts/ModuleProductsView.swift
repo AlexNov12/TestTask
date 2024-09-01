@@ -92,7 +92,7 @@ extension ModuleProductsView: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-// Нужен будет потом для перехода на второй модуль
+// Нужен для перехода на второй модуль
 extension ModuleProductsView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

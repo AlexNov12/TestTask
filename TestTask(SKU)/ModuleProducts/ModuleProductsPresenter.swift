@@ -29,7 +29,7 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
         self.router = router
     }
     
-    // Добавим метод для обработки нажатия на продукт
+    //  Метод для обработки нажатия на продукт
     func tapOnProduct(sku: String) {
         guard let product = model?.first(where: { $0.sku == sku }) else { return }
         let total = String(format: "£%.2f", product.generalAmountOfGBP)
@@ -55,7 +55,9 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
 
 private extension ModuleProductsPresenter {
     func updateUI() {
-        guard let model = model, model.count > 0 else { return }
+        guard var model = model, model.count > 0 else { return }
+        
+        model.sort { $0.sku.localizedCaseInsensitiveCompare($1.sku) == .orderedAscending }
         
         let items: [ModuleProductsTableViewCell.Model] = model.map {
             .init(

@@ -19,11 +19,11 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
     var title: String { "Transactions for \(context.sku)" }
     var analiticScreenName: String { "transactions_module_screen_name" }
     
-    private let service: TransactionsServiceProtocol
+    private let service: ProductServiceProtocol
     private let context: ModuleTransactionsFactory.Context
     private var model: [TransactionsForSKU]?
     
-    init(service: TransactionsServiceProtocol, context: ModuleTransactionsFactory.Context){
+    init(service: ProductServiceProtocol, context: ModuleTransactionsFactory.Context){
         self.service = service
         self.context = context
     }

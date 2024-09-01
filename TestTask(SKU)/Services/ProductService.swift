@@ -42,7 +42,7 @@ final class ProductService: ProductServiceProtocol {
     }
     
     func requestProducts(completion: @escaping (Result<[ProductsModel], Error>) -> ()) {
-        // Здесь загружаем данные из plist и обрабатываем их
+        //  Загружаем данные из plist и обрабатываем их
         let group = DispatchGroup()
         var ratesResult: Result<[Rate], Error>?
         var transactionsResult: Result<[Transaction], Error>?
@@ -92,7 +92,6 @@ final class ProductService: ProductServiceProtocol {
                 conversionInGBP[rate.from] = rateInGBP
             }
         }
-        // Пример конверсии через USD для CAD
         if let usdToGbp = conversionInGBP["USD"] {
             let cadToGbp = 1.0 / 1.09 * usdToGbp // Примерная формула, нужно уточнить по требованиям
             conversionInGBP["CAD"] = cadToGbp
@@ -123,6 +122,7 @@ final class ProductService: ProductServiceProtocol {
         return products
     }
     
+    // Создание массива [TransactionsForSKU]
     func getTransactions(for sku: String) -> [TransactionsForSKU] {
         return transactions
             .filter { $0.sku == sku }
