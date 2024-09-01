@@ -81,12 +81,14 @@ private extension ModuleProductsTableViewCell {
         NSLayoutConstraint.activate([
             skuLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             skuLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            skuLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8),
             countOfTransactionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
             countOfTransactionsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            countOfTransactionsLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8),
             
             line.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             line.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            line.bottomAnchor.constraint(equalTo: contentView.bottomAnchor), // Исправление здесь
+            line.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             line.heightAnchor.constraint(equalToConstant: 1.0 / UIScreen.main.scale)
         ])
     }

@@ -21,7 +21,7 @@ public struct Transaction : Decodable {
 public struct ProductsModel {
     var sku: String
     var countOfTransactions: Int
-    var generalMountOfGBP: Double
+    var generalAmountOfGBP: Double
 }
 
 // Структура для первого модуля
