@@ -27,7 +27,7 @@ final class ModuleProductsTableViewCell: UITableViewCell {
     private lazy var countOfTransactionsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .right
         return label

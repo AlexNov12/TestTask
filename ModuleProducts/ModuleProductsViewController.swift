@@ -36,7 +36,6 @@ final class ModuleProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         title = presenter.title
-//        navigationController?.navigationBar.prefersLargeTitles = true
         presenter.viewDidLoad()
     }
 }

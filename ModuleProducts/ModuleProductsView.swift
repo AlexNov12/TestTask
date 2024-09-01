@@ -126,25 +126,3 @@ private extension ModuleProductsView {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

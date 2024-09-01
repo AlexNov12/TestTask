@@ -5,7 +5,6 @@
 //  Created by Александр Новиков on 31.08.2024.
 //
 
-
 protocol ModuleProductsPresenterProtocol {
     var title: String { get }
     var analiticScreenName: String { get }
@@ -27,7 +26,6 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
         self.service = service
     }
     
-    // Вот здесь нужно будет сделать клоужеры на вытаску продуктов
     func viewDidLoad() {
         view?.stopLoader()
         service.requestProducts { [weak self] (result: Result<[ProductsModel], Error>) in

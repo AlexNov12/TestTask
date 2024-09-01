@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol ProductServiceProtocol {
     func requestProducts(completion: @escaping (Result<[ProductsModel], Error>) -> ())
 }
@@ -100,7 +99,7 @@ final class ProductService: ProductServiceProtocol {
         conversionInGBP["GBP"] = 1.0
     }
     
-    // Создание массива [ProductsModel] (ранее Products)
+    // Создание массива [ProductsModel]
     private func createProducts(from transactions: [Transaction]) -> [ProductsModel] {
         var skuCounts = [String: Int]()
         var skuAmountsInGBP = [String: Double]()
@@ -122,5 +121,13 @@ final class ProductService: ProductServiceProtocol {
         
         return products
     }
+    
+    // Создание массива [TransactionsForSKU]
+//    private func createTransaction(from transactions: [Transaction]) -> [TransactionsForSKU] {
+//        
+//        
+//        return []
+//    }
+    
 }
 

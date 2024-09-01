@@ -19,6 +19,14 @@
 		B35F05FE2C82F5A7008420BA /* ModuleProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F05FD2C82F5A7008420BA /* ModuleProductsView.swift */; };
 		B35F06002C82F5BD008420BA /* ModuleProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F05FF2C82F5BD008420BA /* ModuleProductsViewController.swift */; };
 		B35F06022C82F5D7008420BA /* ModuleProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06012C82F5D7008420BA /* ModuleProductsTableViewCell.swift */; };
+		B35F06092C83A5B0008420BA /* ModuleTransactionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06082C83A5B0008420BA /* ModuleTransactionsRouter.swift */; };
+		B35F060B2C83A5CE008420BA /* ModuleTransactionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F060A2C83A5CE008420BA /* ModuleTransactionsFactory.swift */; };
+		B35F060D2C83A5DE008420BA /* ModuleTransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F060C2C83A5DE008420BA /* ModuleTransactionsPresenter.swift */; };
+		B35F060F2C83A5EF008420BA /* ModuleTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F060E2C83A5EF008420BA /* ModuleTransactionsView.swift */; };
+		B35F06112C83A5FF008420BA /* ModuleTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06102C83A5FF008420BA /* ModuleTransactionsViewController.swift */; };
+		B35F06132C83A615008420BA /* ModuleTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06122C83A615008420BA /* ModuleTransactionsTableViewCell.swift */; };
+		B35F06152C83A633008420BA /* ModuleProductsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06142C83A633008420BA /* ModuleProductsRouter.swift */; };
+		B35F06172C83A7CC008420BA /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06162C83A7CC008420BA /* TransactionsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +44,14 @@
 		B35F05FD2C82F5A7008420BA /* ModuleProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsView.swift; sourceTree = "<group>"; };
 		B35F05FF2C82F5BD008420BA /* ModuleProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsViewController.swift; sourceTree = "<group>"; };
 		B35F06012C82F5D7008420BA /* ModuleProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsTableViewCell.swift; sourceTree = "<group>"; };
+		B35F06082C83A5B0008420BA /* ModuleTransactionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsRouter.swift; sourceTree = "<group>"; };
+		B35F060A2C83A5CE008420BA /* ModuleTransactionsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsFactory.swift; sourceTree = "<group>"; };
+		B35F060C2C83A5DE008420BA /* ModuleTransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsPresenter.swift; sourceTree = "<group>"; };
+		B35F060E2C83A5EF008420BA /* ModuleTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsView.swift; sourceTree = "<group>"; };
+		B35F06102C83A5FF008420BA /* ModuleTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsViewController.swift; sourceTree = "<group>"; };
+		B35F06122C83A615008420BA /* ModuleTransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsTableViewCell.swift; sourceTree = "<group>"; };
+		B35F06142C83A633008420BA /* ModuleProductsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsRouter.swift; sourceTree = "<group>"; };
+		B35F06162C83A7CC008420BA /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +71,7 @@
 				B35F05EE2C82DADE008420BA /* Models */,
 				B35F05EF2C82DAF1008420BA /* Services */,
 				B35F05F02C82DB0C008420BA /* ModuleProducts */,
+				B35F06072C83A4C3008420BA /* ModuleTransactions */,
 				B35F05D92C82DAB0008420BA /* TestTask(SKU) */,
 				B35F05D82C82DAB0008420BA /* Products */,
 			);
@@ -82,9 +99,9 @@
 		B35F05EE2C82DADE008420BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B35F05F52C82DBC9008420BA /* ProductModels.swift */,
 				B35F05F32C82DB9B008420BA /* transactions.plist */,
 				B35F05F12C82DB95008420BA /* rates.plist */,
-				B35F05F52C82DBC9008420BA /* ProductModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -93,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				B35F05F72C82DC6A008420BA /* ProductService.swift */,
+				B35F06162C83A7CC008420BA /* TransactionsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -105,8 +123,22 @@
 				B35F05FD2C82F5A7008420BA /* ModuleProductsView.swift */,
 				B35F05FF2C82F5BD008420BA /* ModuleProductsViewController.swift */,
 				B35F06012C82F5D7008420BA /* ModuleProductsTableViewCell.swift */,
+				B35F06142C83A633008420BA /* ModuleProductsRouter.swift */,
 			);
 			path = ModuleProducts;
+			sourceTree = "<group>";
+		};
+		B35F06072C83A4C3008420BA /* ModuleTransactions */ = {
+			isa = PBXGroup;
+			children = (
+				B35F060C2C83A5DE008420BA /* ModuleTransactionsPresenter.swift */,
+				B35F060A2C83A5CE008420BA /* ModuleTransactionsFactory.swift */,
+				B35F060E2C83A5EF008420BA /* ModuleTransactionsView.swift */,
+				B35F06102C83A5FF008420BA /* ModuleTransactionsViewController.swift */,
+				B35F06122C83A615008420BA /* ModuleTransactionsTableViewCell.swift */,
+				B35F06082C83A5B0008420BA /* ModuleTransactionsRouter.swift */,
+			);
+			path = ModuleTransactions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,14 +213,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35F06132C83A615008420BA /* ModuleTransactionsTableViewCell.swift in Sources */,
 				B35F05FE2C82F5A7008420BA /* ModuleProductsView.swift in Sources */,
 				B35F06022C82F5D7008420BA /* ModuleProductsTableViewCell.swift in Sources */,
 				B35F05FA2C82E853008420BA /* ModuleProductsFactory.swift in Sources */,
 				B35F05FC2C82E8E1008420BA /* ModuleProductsPresenter.swift in Sources */,
 				B35F05F82C82DC6A008420BA /* ProductService.swift in Sources */,
+				B35F06112C83A5FF008420BA /* ModuleTransactionsViewController.swift in Sources */,
 				B35F06002C82F5BD008420BA /* ModuleProductsViewController.swift in Sources */,
+				B35F06092C83A5B0008420BA /* ModuleTransactionsRouter.swift in Sources */,
 				B35F05DB2C82DAB0008420BA /* AppDelegate.swift in Sources */,
+				B35F060D2C83A5DE008420BA /* ModuleTransactionsPresenter.swift in Sources */,
+				B35F06172C83A7CC008420BA /* TransactionsService.swift in Sources */,
+				B35F060F2C83A5EF008420BA /* ModuleTransactionsView.swift in Sources */,
+				B35F06152C83A633008420BA /* ModuleProductsRouter.swift in Sources */,
 				B35F05F62C82DBC9008420BA /* ProductModels.swift in Sources */,
+				B35F060B2C83A5CE008420BA /* ModuleTransactionsFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

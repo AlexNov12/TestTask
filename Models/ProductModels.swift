@@ -24,12 +24,12 @@ public struct ProductsModel {
     var generalAmountOfGBP: Double
 }
 
-// Структура для первого модуля
+// Структура для второго модуля
 public struct TransactionsForSKU {
     var sku : String
-    var startCurrency: String
-    var amountIntStartCurrency : Double
-    var amountIntStartGBP : Double
+    var currency: String
+    var amount : Double
+    var amountInGBP : Double
 }
 
 

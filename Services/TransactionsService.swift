@@ -13,7 +13,7 @@ protocol TransactionsServiceProtocol {
 
 final class TransactionsService: TransactionsServiceProtocol {
     func requestTransactions(completion: @escaping (Result<[TransactionsForSKU], Error>) -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.async {
             completion(.success(Constants.transactions))
         }
     }
