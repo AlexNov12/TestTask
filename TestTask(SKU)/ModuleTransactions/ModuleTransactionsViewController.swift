@@ -9,10 +9,6 @@ import UIKit
 
 protocol ModuleTransactionsViewProtocol: AnyObject {
     func update(model: ModuleTransactionsView.Model)
-    func showError()
-    func showEmpty()
-    func startLoader()
-    func stopLoader()
 }
 
 final class ModuleTransactionsViewController: UIViewController {
@@ -34,7 +30,6 @@ final class ModuleTransactionsViewController: UIViewController {
         view = customView
     }
     
-    // Добавить в название SKU конкретный
     override func viewDidLoad() {
         title = presenter.title
         presenter.viewDidLoad()
@@ -42,24 +37,7 @@ final class ModuleTransactionsViewController: UIViewController {
 }
 
 extension ModuleTransactionsViewController: ModuleTransactionsViewProtocol {
-    func showError() {
-        customView.showError()
-    }
-    
-    func showEmpty() {
-        customView.showEmpty()
-    }
-        
     func update(model: ModuleTransactionsView.Model) {
         customView.update(model: model)
     }
-    
-    func startLoader() {
-        customView.startLoader()
-    }
-    
-    func stopLoader() {
-        customView.stopLoader()
-    }
 }
-

@@ -9,10 +9,8 @@ import UIKit
 
 final class ModuleProductsView: UIView {
     
-    // Используем typealias, что бы было красиво и удобно :)
     typealias Item = ModuleProductsTableViewCell.Model
     
-    // Модель через которую передают все изменения во View/TableView
     struct Model {
         let items: [Item]
     }
@@ -21,7 +19,7 @@ final class ModuleProductsView: UIView {
     
     private lazy var tableView: UITableView = {
         let view = UITableView()
-        view.register(ModuleProductsTableViewCell.self, forCellReuseIdentifier: ModuleProductsTableViewCell.product)
+        view.register(ModuleProductsTableViewCell.self, forCellReuseIdentifier: ModuleProductsTableViewCell.productCell)
         view.separatorInset = .zero
         view.tableFooterView = UIView()
         view.backgroundColor = .systemBackground
@@ -49,22 +47,6 @@ final class ModuleProductsView: UIView {
         self.model = model
         tableView.reloadData()
     }
-    
-    func showError() {
-        // Показываем View ошибки
-    }
-    
-    func showEmpty() {
-        // Показываем какой-то View для Empty state
-    }
-    
-    func startLoader() {
-        // Показываем скелетон или лоадер
-    }
-    
-    func stopLoader() {
-        // Скрываем все
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -74,7 +56,7 @@ extension ModuleProductsView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let model = model, let cell = tableView.dequeueReusableCell(withIdentifier: ModuleProductsTableViewCell.product) as?
+        guard let model = model, let cell = tableView.dequeueReusableCell(withIdentifier: ModuleProductsTableViewCell.productCell) as?
                 ModuleProductsTableViewCell else {
                 return UITableViewCell()
         }
@@ -83,8 +65,7 @@ extension ModuleProductsView: UITableViewDataSource {
         
         let cellModel = ModuleProductsTableViewCell.Model(
             sku: item.sku,
-            countOfTransactions: item.countOfTransactions,
-            generalMountOfGBP: nil
+            transactions: item.transactions
         )
         cell.update(with: cellModel)
         return cell
@@ -92,7 +73,6 @@ extension ModuleProductsView: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-// Нужен для перехода на второй модуль
 extension ModuleProductsView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

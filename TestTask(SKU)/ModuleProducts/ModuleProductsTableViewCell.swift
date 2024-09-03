@@ -9,12 +9,11 @@ import UIKit
 
 final class ModuleProductsTableViewCell: UITableViewCell {
     
-    static let product = "ModuleProductsTableViewCell" // product = SKU
+    static let productCell = "ModuleProductTableViewCell"
     
     struct Model {
         let sku: String
-        let countOfTransactions: Int
-        let generalMountOfGBP: Double?
+        let transactions: String
     }
     
     private lazy var skuLabel: UILabel = {
@@ -24,7 +23,7 @@ final class ModuleProductsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var countOfTransactionsLabel: UILabel = {
+    private lazy var transactionsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -63,28 +62,29 @@ final class ModuleProductsTableViewCell: UITableViewCell {
     
     func update(with model: Model) {
         skuLabel.text = model.sku
-        countOfTransactionsLabel.text = ("\(model.countOfTransactions) transactions")
+        transactionsLabel.text = ("\(model.transactions) transactions")
     }
 }
 
 private extension ModuleProductsTableViewCell {
     func setupSubviews() {
         contentView.addSubview(skuLabel)
-        contentView.addSubview(countOfTransactionsLabel)
+        contentView.addSubview(transactionsLabel)
         contentView.addSubview(line)
         setupConstraints()
     }
     
     func setupConstraints() {
         skuLabel.translatesAutoresizingMaskIntoConstraints = false
-        countOfTransactionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        transactionsLabel.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             skuLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             skuLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            countOfTransactionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            countOfTransactionsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            transactionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            transactionsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             line.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             line.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

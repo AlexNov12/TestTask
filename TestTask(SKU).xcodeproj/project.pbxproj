@@ -19,13 +19,14 @@
 		B35F05FE2C82F5A7008420BA /* ModuleProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F05FD2C82F5A7008420BA /* ModuleProductsView.swift */; };
 		B35F06002C82F5BD008420BA /* ModuleProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F05FF2C82F5BD008420BA /* ModuleProductsViewController.swift */; };
 		B35F06022C82F5D7008420BA /* ModuleProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06012C82F5D7008420BA /* ModuleProductsTableViewCell.swift */; };
-		B35F06092C83A5B0008420BA /* ModuleTransactionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06082C83A5B0008420BA /* ModuleTransactionsRouter.swift */; };
 		B35F060B2C83A5CE008420BA /* ModuleTransactionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F060A2C83A5CE008420BA /* ModuleTransactionsFactory.swift */; };
 		B35F060D2C83A5DE008420BA /* ModuleTransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F060C2C83A5DE008420BA /* ModuleTransactionsPresenter.swift */; };
 		B35F060F2C83A5EF008420BA /* ModuleTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F060E2C83A5EF008420BA /* ModuleTransactionsView.swift */; };
 		B35F06112C83A5FF008420BA /* ModuleTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06102C83A5FF008420BA /* ModuleTransactionsViewController.swift */; };
 		B35F06132C83A615008420BA /* ModuleTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06122C83A615008420BA /* ModuleTransactionsTableViewCell.swift */; };
 		B35F06152C83A633008420BA /* ModuleProductsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06142C83A633008420BA /* ModuleProductsRouter.swift */; };
+		B35F06392C8631A5008420BA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06382C8631A5008420BA /* Converter.swift */; };
+		B35F063B2C864094008420BA /* Formater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F063A2C864094008420BA /* Formater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,13 +44,14 @@
 		B35F05FD2C82F5A7008420BA /* ModuleProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsView.swift; sourceTree = "<group>"; };
 		B35F05FF2C82F5BD008420BA /* ModuleProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsViewController.swift; sourceTree = "<group>"; };
 		B35F06012C82F5D7008420BA /* ModuleProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsTableViewCell.swift; sourceTree = "<group>"; };
-		B35F06082C83A5B0008420BA /* ModuleTransactionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsRouter.swift; sourceTree = "<group>"; };
 		B35F060A2C83A5CE008420BA /* ModuleTransactionsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsFactory.swift; sourceTree = "<group>"; };
 		B35F060C2C83A5DE008420BA /* ModuleTransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsPresenter.swift; sourceTree = "<group>"; };
 		B35F060E2C83A5EF008420BA /* ModuleTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsView.swift; sourceTree = "<group>"; };
 		B35F06102C83A5FF008420BA /* ModuleTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsViewController.swift; sourceTree = "<group>"; };
 		B35F06122C83A615008420BA /* ModuleTransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransactionsTableViewCell.swift; sourceTree = "<group>"; };
 		B35F06142C83A633008420BA /* ModuleProductsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleProductsRouter.swift; sourceTree = "<group>"; };
+		B35F06382C8631A5008420BA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		B35F063A2C864094008420BA /* Formater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				B35F05F72C82DC6A008420BA /* ProductService.swift */,
+				B35F06382C8631A5008420BA /* Converter.swift */,
+				B35F063A2C864094008420BA /* Formater.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -117,8 +121,8 @@
 			children = (
 				B35F05FB2C82E8E1008420BA /* ModuleProductsPresenter.swift */,
 				B35F05F92C82E853008420BA /* ModuleProductsFactory.swift */,
-				B35F05FD2C82F5A7008420BA /* ModuleProductsView.swift */,
 				B35F05FF2C82F5BD008420BA /* ModuleProductsViewController.swift */,
+				B35F05FD2C82F5A7008420BA /* ModuleProductsView.swift */,
 				B35F06012C82F5D7008420BA /* ModuleProductsTableViewCell.swift */,
 				B35F06142C83A633008420BA /* ModuleProductsRouter.swift */,
 			);
@@ -130,10 +134,9 @@
 			children = (
 				B35F060C2C83A5DE008420BA /* ModuleTransactionsPresenter.swift */,
 				B35F060A2C83A5CE008420BA /* ModuleTransactionsFactory.swift */,
-				B35F060E2C83A5EF008420BA /* ModuleTransactionsView.swift */,
 				B35F06102C83A5FF008420BA /* ModuleTransactionsViewController.swift */,
+				B35F060E2C83A5EF008420BA /* ModuleTransactionsView.swift */,
 				B35F06122C83A615008420BA /* ModuleTransactionsTableViewCell.swift */,
-				B35F06082C83A5B0008420BA /* ModuleTransactionsRouter.swift */,
 			);
 			path = ModuleTransactions;
 			sourceTree = "<group>";
@@ -214,11 +217,12 @@
 				B35F05FE2C82F5A7008420BA /* ModuleProductsView.swift in Sources */,
 				B35F06022C82F5D7008420BA /* ModuleProductsTableViewCell.swift in Sources */,
 				B35F05FA2C82E853008420BA /* ModuleProductsFactory.swift in Sources */,
+				B35F06392C8631A5008420BA /* Converter.swift in Sources */,
 				B35F05FC2C82E8E1008420BA /* ModuleProductsPresenter.swift in Sources */,
 				B35F05F82C82DC6A008420BA /* ProductService.swift in Sources */,
 				B35F06112C83A5FF008420BA /* ModuleTransactionsViewController.swift in Sources */,
 				B35F06002C82F5BD008420BA /* ModuleProductsViewController.swift in Sources */,
-				B35F06092C83A5B0008420BA /* ModuleTransactionsRouter.swift in Sources */,
+				B35F063B2C864094008420BA /* Formater.swift in Sources */,
 				B35F05DB2C82DAB0008420BA /* AppDelegate.swift in Sources */,
 				B35F060D2C83A5DE008420BA /* ModuleTransactionsPresenter.swift in Sources */,
 				B35F060F2C83A5EF008420BA /* ModuleTransactionsView.swift in Sources */,

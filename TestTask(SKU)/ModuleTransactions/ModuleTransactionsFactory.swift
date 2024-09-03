@@ -9,18 +9,15 @@ import UIKit
 
 final class ModuleTransactionsFactory {
     
-    // В структуре параметры, которые мы хотим передать в модуль.
     struct Context {
         let sku: String
         let total: String
-        let transactions: [TransactionsForSKU]
+        let transactions: [TransactionForSKU]
     }
     
     func make(context: Context) -> UIViewController {
-        let service = ProductService()
         
         let presenter = ModuleTransactionsPresenter(
-            service: service,
             context: context
         )
         

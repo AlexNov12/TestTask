@@ -8,13 +8,10 @@
 import Foundation
 import UIKit
 
-// Роутер, который открывает все переходы с модуля Products
 
 protocol ModuleProductsRouterProtocol: AnyObject {
     
-    // Модуль Products показывает модуль Transactions и передает в него параметры.
-    // Нужно добавить SKU и [TransactionsForSKU]
-    func openModuleTransactions(sku: String, total: String, transactions: [TransactionsForSKU])
+    func openModuleTransactions(sku: String, total: String, transactions: [TransactionForSKU])
 }
 
 final class ModuleProductsRouter:ModuleProductsRouterProtocol {
@@ -30,10 +27,8 @@ final class ModuleProductsRouter:ModuleProductsRouterProtocol {
     func setRootViewController(root: UIViewController) {
         self.root = root
     }
-    
-    // Модуль Products показывает модуль Transactions и передает в него параметры.
-    // Нужно добавить SKU и [TransactionsForSKU]
-    func openModuleTransactions(sku: String, total: String, transactions: [TransactionsForSKU]) {
+
+    func openModuleTransactions(sku: String, total: String, transactions: [TransactionForSKU]) {
         
         let context = ModuleTransactionsFactory.Context(
             sku: sku,

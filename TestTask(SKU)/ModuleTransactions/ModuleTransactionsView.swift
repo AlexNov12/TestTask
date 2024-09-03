@@ -9,10 +9,8 @@ import UIKit
 
 final class ModuleTransactionsView: UIView {
     
-    // Используем typealias, что бы было красиво и удобно :)
     typealias Item = ModuleTransactionsTableViewCell.Model
     
-    // Модель через которую передают все изменения во View/TableView
     struct Model {
         let items: [Item]
         let total: String
@@ -29,7 +27,7 @@ final class ModuleTransactionsView: UIView {
     
     private lazy var tableView: UITableView = {
         let view = UITableView()
-        view.register(ModuleTransactionsTableViewCell.self, forCellReuseIdentifier: ModuleTransactionsTableViewCell.transaction)
+        view.register(ModuleTransactionsTableViewCell.self, forCellReuseIdentifier: ModuleTransactionsTableViewCell.transactionCell)
         view.separatorInset = .zero
         view.tableFooterView = UIView()
         view.backgroundColor = .systemBackground
@@ -57,22 +55,6 @@ final class ModuleTransactionsView: UIView {
         totalTransactions.text = model.total
         tableView.reloadData()
     }
-    
-    func showError() {
-        // Показываем View ошибки
-    }
-    
-    func showEmpty() {
-        // Показываем какой-то View для Empty state
-    }
-    
-    func startLoader() {
-        // Показываем скелетон или лоадер
-    }
-    
-    func stopLoader() {
-        // Скрываем все
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -83,7 +65,7 @@ extension ModuleTransactionsView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let model = model, let cell = tableView.dequeueReusableCell(withIdentifier: ModuleTransactionsTableViewCell.transaction) as?
+        guard let model = model, let cell = tableView.dequeueReusableCell(withIdentifier: ModuleTransactionsTableViewCell.transactionCell) as?
                 ModuleTransactionsTableViewCell else {
                 return UITableViewCell()
         }
@@ -91,9 +73,8 @@ extension ModuleTransactionsView: UITableViewDataSource {
         let item = model.items[indexPath.row]
         
         let cellModel = ModuleTransactionsTableViewCell.Model(
-            currency: item.currency,
-            startAmount: item.startAmount,
-            amountInGBP: item.amountInGBP
+            amount: item.amount,
+            convertedToGBP: item.convertedToGBP
         )
         
         cell.update(with: cellModel)

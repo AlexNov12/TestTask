@@ -7,25 +7,25 @@
 
 import Foundation
 
-// Данные из "rates.plist"
-public struct Rate : Decodable {
-    let from, rate, to : String
+struct Rate: Decodable {
+    let from: String
+    let rate: String
+    let to: String
 }
 
-// Данные из "transaction.plist"
-public struct Transaction : Decodable {
-    let amount, currency, sku : String
+struct Transaction: Decodable {
+    let amount: String
+    let currency: String
+    let sku: String
 }
 
-// Структура для первого модуля
-public struct ProductsModel {
+struct ProductModel {
     var sku: String
     var countOfTransactions: Int
     var generalAmountOfGBP: Double
 }
 
-// Структура для второго модуля
-public struct TransactionsForSKU {
+struct TransactionForSKU {
     var sku : String
     var currency: String
     var amount : Double

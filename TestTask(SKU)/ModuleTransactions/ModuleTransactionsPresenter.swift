@@ -7,7 +7,6 @@
 
 protocol ModuleTransactionsPresenterProtocol {
     var title: String { get }
-    var analiticScreenName: String { get }
     
     func viewDidLoad()
 }
@@ -15,34 +14,29 @@ protocol ModuleTransactionsPresenterProtocol {
 final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
     
     weak var view: ModuleTransactionsViewProtocol?
+    private let formater = Formater()
 
     var title: String { "Transactions for \(context.sku)" }
-    var analiticScreenName: String { "transactions_module_screen_name" }
     
-    private let service: ProductServiceProtocol
     private let context: ModuleTransactionsFactory.Context
-    private var model: [TransactionsForSKU]?
+    private var model: [TransactionForSKU]?
     
-    init(service: ProductServiceProtocol, context: ModuleTransactionsFactory.Context){
-        self.service = service
+    init(context: ModuleTransactionsFactory.Context){
         self.context = context
     }
     
     func viewDidLoad() {
-        view?.stopLoader()
         updateUI()
     }
 }
 
 private extension ModuleTransactionsPresenter {
     func updateUI() {
-//        guard let model = model, model.count > 0 else { return }
         
         let items: [ModuleTransactionsTableViewCell.Model] = context.transactions.map {
             .init(
-                currency: $0.currency,
-                startAmount: $0.amount,
-                amountInGBP: $0.amountInGBP
+                amount: formater.format2f($0.amount),
+                convertedToGBP: formater.format2fGBP($0.amountInGBP)
             )
         }
         

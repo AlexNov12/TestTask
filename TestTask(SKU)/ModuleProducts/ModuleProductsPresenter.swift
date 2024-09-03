@@ -7,7 +7,6 @@
 
 protocol ModuleProductsPresenterProtocol {
     var title: String { get }
-    var analiticScreenName: String { get }
     
     func viewDidLoad()
     func tapOnProduct(sku: String)
@@ -19,10 +18,9 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
     private let router: ModuleProductsRouterProtocol
     
     var title: String { "Products" }
-    var analiticScreenName: String { "products_module_screen_name" }
     
     private let service: ProductServiceProtocol
-    private var model: [ProductsModel]?
+    private var model: [ProductModel]?
     
     init(service: ProductServiceProtocol, router: ModuleProductsRouterProtocol) {
         self.service = service
@@ -38,16 +36,14 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
     }
     
     func viewDidLoad() {
-        view?.stopLoader()
-        service.requestProducts { [weak self] (result: Result<[ProductsModel], Error>) in
+        service.requestProducts { [weak self] (result: Result<[ProductModel], Error>) in
             guard let self else { return }
-            view?.stopLoader()
             switch result {
             case let .success(model):
                 self.model = model
                 updateUI()
             case .failure:
-                view?.showError()
+                print("Error requestProducts")
             }
         }
     }
@@ -62,8 +58,7 @@ private extension ModuleProductsPresenter {
         let items: [ModuleProductsTableViewCell.Model] = model.map {
             .init(
                 sku: $0.sku,
-                countOfTransactions: $0.countOfTransactions,
-                generalMountOfGBP: nil
+                transactions: String($0.countOfTransactions)
             )
         }
         
