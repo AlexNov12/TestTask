@@ -17,7 +17,7 @@ final class ModuleProductsFactory {
         )
         
         let presenter = ModuleProductsPresenter(
-            service: service, 
+            service: service,
             router: router
         )
         

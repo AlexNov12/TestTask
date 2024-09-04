@@ -9,7 +9,7 @@ protocol ModuleProductsPresenterProtocol {
     var title: String { get }
     
     func viewDidLoad()
-    func tapOnProduct(sku: String)
+    func tapOnProduct(at index: Int)
 }
 
 final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
@@ -27,12 +27,9 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
         self.router = router
     }
     
-    //  Метод для обработки нажатия на продукт
-    func tapOnProduct(sku: String) {
-        guard let product = model?.first(where: { $0.sku == sku }) else { return }
-        let total = String(format: "£%.2f", product.generalAmountOfGBP)
-        let transactionsForSKU = service.getTransactions(for: sku)
-        router.openModuleTransactions(sku: sku, total: total, transactions: transactionsForSKU)
+    func tapOnProduct(at index: Int) {
+        guard let product = model?[index] else { return }
+        router.openModuleTransactions(sku: product.sku, transactions: product.transactions)
     }
     
     func viewDidLoad() {
@@ -40,7 +37,7 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
             guard let self else { return }
             switch result {
             case let .success(model):
-                self.model = model
+                self.model = model.sorted { $0.sku.localizedCaseInsensitiveCompare($1.sku) == .orderedAscending }
                 updateUI()
             case .failure:
                 print("Error requestProducts")
@@ -53,12 +50,10 @@ private extension ModuleProductsPresenter {
     func updateUI() {
         guard var model = model, model.count > 0 else { return }
         
-        model.sort { $0.sku.localizedCaseInsensitiveCompare($1.sku) == .orderedAscending }
-        
         let items: [ModuleProductsTableViewCell.Model] = model.map {
             .init(
                 sku: $0.sku,
-                transactions: String($0.countOfTransactions)
+                transactions: String($0.transactions.count)
             )
         }
         

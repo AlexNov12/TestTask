@@ -77,10 +77,8 @@ extension ModuleProductsView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        guard let model = model?.items[indexPath.row] else { return }
-        
-        presenter.tapOnProduct(sku: model.sku)
+
+        presenter.tapOnProduct(at: indexPath.row)
     }
 }
 
@@ -107,4 +105,3 @@ private extension ModuleProductsView {
         ])
     }
 }
-

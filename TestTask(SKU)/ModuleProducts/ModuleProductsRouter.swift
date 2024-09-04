@@ -5,13 +5,11 @@
 //  Created by Александр Новиков on 31.08.2024.
 //
 
-import Foundation
 import UIKit
-
 
 protocol ModuleProductsRouterProtocol: AnyObject {
     
-    func openModuleTransactions(sku: String, total: String, transactions: [TransactionForSKU])
+    func openModuleTransactions(sku: String, transactions: [Transaction])
 }
 
 final class ModuleProductsRouter:ModuleProductsRouterProtocol {
@@ -28,11 +26,10 @@ final class ModuleProductsRouter:ModuleProductsRouterProtocol {
         self.root = root
     }
 
-    func openModuleTransactions(sku: String, total: String, transactions: [TransactionForSKU]) {
+    func openModuleTransactions(sku: String, transactions: [Transaction]) {
         
         let context = ModuleTransactionsFactory.Context(
             sku: sku,
-            total: total,
             transactions: transactions
         )
         

@@ -19,7 +19,6 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
     var title: String { "Transactions for \(context.sku)" }
     
     private let context: ModuleTransactionsFactory.Context
-    private var model: [TransactionForSKU]?
     
     init(context: ModuleTransactionsFactory.Context){
         self.context = context
@@ -32,15 +31,18 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
 
 private extension ModuleTransactionsPresenter {
     func updateUI() {
+    
+        let totalInGBP = context.transactions.reduce(0.0) { $0 + Double($1.amountInGBP)! }
+        let totalFormatted = formater.format2fGBP(totalInGBP)
         
         let items: [ModuleTransactionsTableViewCell.Model] = context.transactions.map {
             .init(
-                amount: formater.format2f($0.amount),
-                convertedToGBP: formater.format2fGBP($0.amountInGBP)
+                amount: formater.format2f(Double($0.amount) ?? 0),
+                convertedToGBP: formater.format2fGBP(Double($0.amountInGBP) ?? 0) //
             )
         }
         
-        let viewModel: ModuleTransactionsView.Model = .init(items: items, total: context.total)
+        let viewModel: ModuleTransactionsView.Model = .init(items: items, total: totalFormatted)
         
         view?.update(model: viewModel)
         

@@ -11,8 +11,7 @@ final class ModuleTransactionsFactory {
     
     struct Context {
         let sku: String
-        let total: String
-        let transactions: [TransactionForSKU]
+        let transactions: [Transaction]
     }
     
     func make(context: Context) -> UIViewController {

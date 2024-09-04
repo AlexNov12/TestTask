@@ -7,27 +7,47 @@
 
 import Foundation
 
-struct Converter {
-    var сurrencies = ["GBP": 1.00]
+final class Converter {
+
+    private var currencies = ["GBP": 1.00]
+    private let dataLoader: LoadData
+    private let formater = Formater()
+
+    init(dataLoader: LoadData = LoadData()) {
+        self.dataLoader = dataLoader
+    }
     
-    mutating func setupConversionRates(from rates: [Rate]) {
-        let currenciesSet  = Set(rates.map {$0.from} + rates.map {$0.to})
-        for сurrency in currenciesSet  {
-            let rateTo = rates.filter { $0.to == "GBP" && $0.from == сurrency }
-            if !rateTo.isEmpty{
-                self.сurrencies[сurrency] = Double(rateTo[0].rate)
-            } else {
-                let rateToUSD = rates.filter { $0.to == сurrency && $0.from == "USD" }
-                let rateFromUSDToGBP = rates.filter { $0.to == "GBP" && $0.from == "USD" }
-                if let rateTo = rateToUSD.first?.rate,
-                   let rateFrom = rateFromUSDToGBP.first?.rate,
-                   let rateToValue = Double(rateTo),
-                   let rateFromValue = Double(rateFrom) {
-                    сurrencies[сurrency] = rateFromValue / rateToValue
+    func setupConversionRates(completion: @escaping (Result<[RateResponse], Error>) -> Void) {
+        dataLoader.loadRates { ratesResult in
+            switch ratesResult {
+            case .success(let rates):
+                let currenciesSet = Set(rates.map {$0.from} + rates.map {$0.to})
+                for currency in currenciesSet  {
+                    let rateTo = rates.filter { $0.to == "GBP" && $0.from == currency }
+                    if !rateTo.isEmpty{
+                        self.currencies[currency] = Double(rateTo[0].rate)
+                    } else {
+                        let rateToUSD = rates.filter { $0.to == currency && $0.from == "USD" }
+                        let rateFromUSDToGBP = rates.filter { $0.to == "GBP" && $0.from == "USD" }
+                        if let rateTo = rateToUSD.first?.rate,
+                           let rateFrom = rateFromUSDToGBP.first?.rate,
+                           let rateToValue = Double(rateTo),
+                           let rateFromValue = Double(rateFrom) {
+                            self.currencies[currency] = rateFromValue / rateToValue
+                        }
+                    }
                 }
+                completion(.success(rates))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
-        print(сurrencies)
+    }
+    
+    func convertToGBP(amount: String, currency: String) -> String {
+        guard let amountValue = Double(amount), let rate = currencies[currency] else { return "0.00" }
+        let amountInGBP = amountValue * rate
+        return formater.format2f(amountInGBP)
     }
 }
 

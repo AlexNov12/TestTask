@@ -7,29 +7,27 @@
 
 import Foundation
 
-struct Rate: Decodable {
+struct RateResponse: Decodable {
     let from: String
     let rate: String
     let to: String
 }
 
-struct Transaction: Decodable {
+struct TransactionResponse: Decodable {
     let amount: String
     let currency: String
     let sku: String
 }
 
 struct ProductModel {
-    var sku: String
-    var countOfTransactions: Int
-    var generalAmountOfGBP: Double
+    let sku: String
+    let transactions: [Transaction]
 }
 
-struct TransactionForSKU {
-    var sku : String
-    var currency: String
-    var amount : Double
-    var amountInGBP : Double
+struct Transaction {
+    let amount: String
+    let currency: String
+    let amountInGBP: String
 }
 
 
