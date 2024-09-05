@@ -30,4 +30,12 @@ struct Transaction {
     let amountInGBP: String
 }
 
+struct FromTo: Hashable {
+    let from: Currency
+    let to: Currency
+}
+
+struct Currency: Hashable {
+    let code: String
+}
 

@@ -86,3 +86,4 @@ private extension ModuleTransactionsTableViewCell {
         ])
     }
 }
+

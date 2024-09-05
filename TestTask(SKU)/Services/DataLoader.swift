@@ -7,7 +7,13 @@
 
 import Foundation
 
-final class LoadData {
+import Foundation
+
+protocol DataLoaderProtocol {
+    func  receiveData<T: Decodable>(resource: String, type: T.Type, completion: @escaping (Result<T, Error>) -> Void)
+}
+
+final class DataLoader: DataLoaderProtocol {
 
     func receiveData<T: Decodable>(resource: String, type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
             guard let url = Bundle.main.url(forResource: resource, withExtension: "plist") else {

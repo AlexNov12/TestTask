@@ -7,20 +7,20 @@
 
 import Foundation
 
+import Foundation
+
 protocol ProductServiceProtocol {
     func requestProducts(completion: @escaping (Result<[ProductModel], Error>) -> ())
 }
 
 final class ProductService: ProductServiceProtocol {
     
-    private let dataLoader: LoadData
-    private let converter: Converter
-    private let productCreator: ProductCreator
+    private let dataLoader: DataLoader
+    private let converter = Converter()
+    private let productCreator =  ProductCreator()
 
-    init(dataLoader: LoadData = LoadData(), converter: Converter = Converter(), productCreator: ProductCreator = ProductCreator()) {
+    init(dataLoader: DataLoader = DataLoader()) {
         self.dataLoader = dataLoader
-        self.converter = converter
-        self.productCreator = productCreator
     }
 
     

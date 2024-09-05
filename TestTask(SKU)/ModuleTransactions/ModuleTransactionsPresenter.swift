@@ -32,13 +32,15 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
 private extension ModuleTransactionsPresenter {
     func updateUI() {
     
-        let totalInGBP = context.transactions.reduce(0.0) { $0 + Double($1.amountInGBP)! }
-        let totalFormatted = formater.format2fGBP(totalInGBP)
+        let totalInGBP = context.transactions.reduce(0.0) { result, transaction in
+            result + (Double(transaction.amountInGBP) ?? 0.0)
+        }
+        let totalFormatted = formater.format2fWithCurrency(totalInGBP, formater.gbpCurrency)
         
         let items: [ModuleTransactionsTableViewCell.Model] = context.transactions.map {
             .init(
-                amount: formater.format2f(Double($0.amount) ?? 0),
-                convertedToGBP: formater.format2fGBP(Double($0.amountInGBP) ?? 0) //
+                amount: (formater.currencies[$0.currency] ?? "") + $0.amount,
+                convertedToGBP: (formater.currencies[$0.currency] ?? "") + $0.amountInGBP
             )
         }
         

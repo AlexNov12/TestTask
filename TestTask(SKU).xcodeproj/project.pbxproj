@@ -28,7 +28,7 @@
 		B35F06392C8631A5008420BA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F06382C8631A5008420BA /* Converter.swift */; };
 		B35F063B2C864094008420BA /* Formater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F063A2C864094008420BA /* Formater.swift */; };
 		B35F063D2C877B88008420BA /* ProductCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F063C2C877B88008420BA /* ProductCreator.swift */; };
-		B35F063F2C877BA3008420BA /* ReceiveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F063E2C877BA3008420BA /* ReceiveData.swift */; };
+		B35F063F2C877BA3008420BA /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F063E2C877BA3008420BA /* DataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +55,7 @@
 		B35F06382C8631A5008420BA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		B35F063A2C864094008420BA /* Formater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formater.swift; sourceTree = "<group>"; };
 		B35F063C2C877B88008420BA /* ProductCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreator.swift; sourceTree = "<group>"; };
-		B35F063E2C877BA3008420BA /* ReceiveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveData.swift; sourceTree = "<group>"; };
+		B35F063E2C877BA3008420BA /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 				B35F05F72C82DC6A008420BA /* ProductService.swift */,
 				B35F06382C8631A5008420BA /* Converter.swift */,
 				B35F063C2C877B88008420BA /* ProductCreator.swift */,
-				B35F063E2C877BA3008420BA /* ReceiveData.swift */,
+				B35F063E2C877BA3008420BA /* DataLoader.swift */,
 				B35F063A2C864094008420BA /* Formater.swift */,
 			);
 			path = Services;
@@ -228,7 +228,7 @@
 				B35F05FC2C82E8E1008420BA /* ModuleProductsPresenter.swift in Sources */,
 				B35F05F82C82DC6A008420BA /* ProductService.swift in Sources */,
 				B35F06112C83A5FF008420BA /* ModuleTransactionsViewController.swift in Sources */,
-				B35F063F2C877BA3008420BA /* ReceiveData.swift in Sources */,
+				B35F063F2C877BA3008420BA /* DataLoader.swift in Sources */,
 				B35F06002C82F5BD008420BA /* ModuleProductsViewController.swift in Sources */,
 				B35F063B2C864094008420BA /* Formater.swift in Sources */,
 				B35F05DB2C82DAB0008420BA /* AppDelegate.swift in Sources */,

@@ -16,7 +16,7 @@ final class ProductCreator {
         for transaction in transactions {
             let amountInGBP = converter.convertToGBP(
                 amount: transaction.amount,
-                currency: transaction.currency
+                fromCurrency: Currency(code: transaction.currency)
             )
             let newTransaction = Transaction(
                 amount: transaction.amount,

@@ -38,4 +38,3 @@ final class ModuleProductsRouter:ModuleProductsRouterProtocol {
         root?.navigationController?.pushViewController(viewController, animated: true)
     }
 }
-
