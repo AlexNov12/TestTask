@@ -28,8 +28,9 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
     }
     
     func tapOnProduct(at index: Int) {
-        guard let product = model?[index] else { return }
-        router.openModuleTransactions(sku: product.sku, transactions: product.transactions)
+        guard let product = model else { return }
+        guard product.indices.contains(index) else { return }
+        router.openModuleTransactions(sku: product[index].sku, transactions: product[index].transactions)
     }
     
     func viewDidLoad() {

@@ -21,8 +21,8 @@ final class Converter {
             switch ratesResult {
             case .success(let rates):
                 rates.forEach {
-                    let fromCurrency = Currency(code: $0.from)
-                    let toCurrency = Currency(code: $0.to)
+                    let fromCurrency = $0.from
+                    let toCurrency = $0.to
                     if let rate = Double($0.rate) {
                         self.currencies[FromTo(
                             from: fromCurrency,
@@ -36,15 +36,15 @@ final class Converter {
             }
         }
     }
-    func convertToGBP(amount: String, fromCurrency: Currency) -> String {
-        let gbpCurrency = Currency(code: formater.gbpCurrency)
-        if gbpCurrency == fromCurrency { return formater.format2f(Double(amount) ?? 1.00) }
+    func convertToGBP(amount: String, fromCurrency: CurrencyCode) -> Double {
+        let gbpCurrency = "GBP"
+        if fromCurrency == gbpCurrency { return Double(amount) ?? 1.00 }
         var result = 0.00
 
         if let rate = currencies[FromTo(from: fromCurrency, to: gbpCurrency)] {
             result = rate
         } else {
-            let usdCurrency = Currency(code: formater.usdCurrency)
+            let usdCurrency = "USD"
             if let fromUSD = currencies[FromTo(from: usdCurrency, to: fromCurrency)],
                 let toGBP = currencies[FromTo(from: usdCurrency, to: gbpCurrency)] {
                     let newRate = toGBP / fromUSD
@@ -53,11 +53,6 @@ final class Converter {
                     result = newRate
                 }
         }
-        if let amountDouble = Double(amount) {
-            let convertedAmount = amountDouble * result
-            return formater.format2f(convertedAmount)
-        } else {
-            return "0.00"
-        }
+        return formater.doubleValue(from: amount) * result
     }
 }

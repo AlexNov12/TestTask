@@ -32,15 +32,15 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
 private extension ModuleTransactionsPresenter {
     func updateUI() {
     
-        let totalInGBP = context.transactions.reduce(0.0) { result, transaction in
-            result + (Double(transaction.amountInGBP) ?? 0.0)
-        }
-        let totalFormatted = formater.format2fWithCurrency(totalInGBP, formater.gbpCurrency)
+        let totalInGBP = context.transactions.reduce(0.0) { $0 + $1.amountInGBP }
+        let totalFormatted = formater.gbp + formater.format2f(totalInGBP)
         
+        
+        // Вот тут у нас должны передаваться строки в конструктор
         let items: [ModuleTransactionsTableViewCell.Model] = context.transactions.map {
             .init(
-                amount: (formater.currencies[$0.currency] ?? "") + $0.amount,
-                convertedToGBP: (formater.currencies[$0.currency] ?? "") + $0.amountInGBP
+                amount: formater.makeSymbol(for: $0.currency) + formater.format2f($0.amount),
+                convertedToGBP: formater.gbp + formater.format2f($0.amountInGBP)
             )
         }
         

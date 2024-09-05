@@ -25,16 +25,14 @@ struct ProductModel {
 }
 
 struct Transaction {
-    let amount: String
-    let currency: String
-    let amountInGBP: String
+    let amount: Double
+    let currency: CurrencyCode
+    let amountInGBP: Double
 }
 
 struct FromTo: Hashable {
-    let from: Currency
-    let to: Currency
+    let from: CurrencyCode
+    let to: CurrencyCode
 }
 
-struct Currency: Hashable {
-    let code: String
-}
+typealias CurrencyCode = String

@@ -8,16 +8,18 @@
 import Foundation
 
 final class ProductCreator {
+    private let formater =  Formater()
+    
     func createProducts(from transactions: [TransactionResponse], converter: Converter) -> [ProductModel] {
         var skuDict = [String: [Transaction]]()
         
         for transaction in transactions {
             let amountInGBP = converter.convertToGBP(
                 amount: transaction.amount,
-                fromCurrency: Currency(code: transaction.currency)
+                fromCurrency: transaction.currency
             )
             let newTransaction = Transaction(
-                amount: transaction.amount,
+                amount: formater.doubleValue(from: transaction.amount),
                 currency: transaction.currency,
                 amountInGBP: amountInGBP
             )

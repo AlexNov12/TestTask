@@ -8,31 +8,24 @@
 import Foundation
 
 final class Formater {
-    let gbpCurrency = "GBP"
-    let usdCurrency = "USD"
 
-    let currencies: [String: String] = [
-        "GBP": "£",
-        "USD": "$",
-        "CAD": "CA$",
-        "AUD": "A$"
-    ]
-
-    func format2fWithCurrency<T>(_ number: T, _ currency: String) -> String {
-        switch number {
-        case is String:
-            return number as! String
-        case is Double:
-            if let convert = currencies[currency] {
-                return String(format: "\(convert)%.2f", number as! Double)
-            } else {
-                return String(format: "%.2f", number as! Double)
-            }
-        default:
-            return ""
-        }
+    let locale: NSLocale = NSLocale(localeIdentifier: "en_US")
+    
+    lazy var gbp = locale.displayName(forKey: .currencySymbol, value: "GBP") ?? ""
+    
+    func makeSymbol(for currency: String) -> String {
+       return locale.displayName(forKey: .currencySymbol, value: currency) ?? currency
     }
+
     func format2f(_ number: Double) -> String {
-            return String(format: "%.2f", number)
+        return String(format: "%.2f", number)
+    }
+    
+    func doubleValue(from amountString: String) -> Double {
+        if let number = Double(amountString) {
+            return number
+        } else {
+            return 0.0
+        }
     }
 }
