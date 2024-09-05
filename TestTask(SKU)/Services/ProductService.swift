@@ -7,14 +7,11 @@
 
 import Foundation
 
-import Foundation
-
 protocol ProductServiceProtocol {
-    func requestProducts(completion: @escaping (Result<[ProductModel], Error>) -> ())
+    func requestProducts(completion: @escaping (Result<[ProductModel], Error>) -> Void)
 }
 
 final class ProductService: ProductServiceProtocol {
-    
     private let dataLoader: DataLoader
     private let converter = Converter()
     private let productCreator =  ProductCreator()
@@ -22,21 +19,18 @@ final class ProductService: ProductServiceProtocol {
     init(dataLoader: DataLoader = DataLoader()) {
         self.dataLoader = dataLoader
     }
-
-    
-    func requestProducts(completion: @escaping (Result<[ProductModel], Error>) -> ()) {
+    func requestProducts(completion: @escaping (Result<[ProductModel], Error>) -> Void) {
         dataLoader.loadTransactions { transactionsResult in
             switch transactionsResult {
             case .success(let transactions):
                 self.converter.setupConversionRates { ratesResult in
                     switch ratesResult {
-                        case .success:
+                    case .success:
                         let products = self.productCreator.createProducts(from: transactions, converter: self.converter)
                         completion(.success(products))
-                        case .failure(let error):
+                    case .failure(let error):
                         completion(.failure(error))
                     }
-                    
                 }
             case .failure(let error):
                 completion(.failure(error))

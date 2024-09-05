@@ -32,7 +32,7 @@ final class ModuleProductsView: UIView {
     
     private let presenter: ModuleProductsPresenterProtocol
     
-    init(presenter: ModuleProductsPresenterProtocol){
+    init(presenter: ModuleProductsPresenterProtocol) {
         self.presenter = presenter
         super.init(frame: .zero)
         commonInit()

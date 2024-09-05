@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 protocol DataLoaderProtocol {
     func  receiveData<T: Decodable>(resource: String, type: T.Type, completion: @escaping (Result<T, Error>) -> Void)
 }

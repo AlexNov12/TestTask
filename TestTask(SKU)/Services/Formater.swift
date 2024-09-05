@@ -7,25 +7,21 @@
 
 import Foundation
 
-import Foundation
-
 final class Formater {
-    // Добавить полиморфизм через is String в format2fWithCurrency
-    
     let gbpCurrency = "GBP"
     let usdCurrency = "USD"
 
     let currencies: [String: String] = [
-        "GBP":"£",
-        "USD":"$",
-        "CAD":"CA$",
-        "AUD":"A$"
+        "GBP": "£",
+        "USD": "$",
+        "CAD": "CA$",
+        "AUD": "A$"
     ]
 
     func format2fWithCurrency<T>(_ number: T, _ currency: String) -> String {
         switch number {
         case is String:
-           return number as! String
+            return number as! String
         case is Double:
             if let convert = currencies[currency] {
                 return String(format: "\(convert)%.2f", number as! Double)
@@ -36,7 +32,6 @@ final class Formater {
             return ""
         }
     }
-    
     func format2f(_ number: Double) -> String {
             return String(format: "%.2f", number)
     }

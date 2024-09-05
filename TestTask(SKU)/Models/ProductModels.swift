@@ -38,4 +38,3 @@ struct FromTo: Hashable {
 struct Currency: Hashable {
     let code: String
 }
-

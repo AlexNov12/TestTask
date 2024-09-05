@@ -9,9 +9,7 @@ import Foundation
 
 final class ProductCreator {
     func createProducts(from transactions: [TransactionResponse], converter: Converter) -> [ProductModel] {
-    
         var skuDict = [String: [Transaction]]()
-
         
         for transaction in transactions {
             let amountInGBP = converter.convertToGBP(
@@ -23,8 +21,7 @@ final class ProductCreator {
                 currency: transaction.currency,
                 amountInGBP: amountInGBP
             )
-            
-            if var existingTransactions = skuDict[transaction.sku]{
+            if var existingTransactions = skuDict[transaction.sku] {
                 existingTransactions.append(newTransaction)
                 skuDict[transaction.sku] = existingTransactions
             } else {

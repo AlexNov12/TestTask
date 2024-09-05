@@ -39,7 +39,7 @@ final class ModuleTransactionsView: UIView {
     
     private let presenter: ModuleTransactionsPresenterProtocol
     
-    init(presenter: ModuleTransactionsPresenterProtocol){
+    init(presenter: ModuleTransactionsPresenterProtocol) {
         self.presenter = presenter
         super.init(frame: .zero)
         commonInit()

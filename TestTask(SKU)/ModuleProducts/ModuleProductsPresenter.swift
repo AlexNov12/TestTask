@@ -48,7 +48,7 @@ final class ModuleProductsPresenter: ModuleProductsPresenterProtocol {
 
 private extension ModuleProductsPresenter {
     func updateUI() {
-        guard var model = model, model.count > 0 else { return }
+        guard let model = model, model.count > 0 else { return }
         
         let items: [ModuleProductsTableViewCell.Model] = model.map {
             .init(

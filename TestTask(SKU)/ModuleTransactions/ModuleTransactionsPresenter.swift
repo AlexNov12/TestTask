@@ -20,7 +20,7 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
     
     private let context: ModuleTransactionsFactory.Context
     
-    init(context: ModuleTransactionsFactory.Context){
+    init(context: ModuleTransactionsFactory.Context) {
         self.context = context
     }
     

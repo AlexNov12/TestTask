@@ -12,7 +12,7 @@ protocol ModuleProductsRouterProtocol: AnyObject {
     func openModuleTransactions(sku: String, transactions: [Transaction])
 }
 
-final class ModuleProductsRouter:ModuleProductsRouterProtocol {
+final class ModuleProductsRouter: ModuleProductsRouterProtocol {
     
     private let factory: ModuleTransactionsFactory
     
