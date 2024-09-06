@@ -37,14 +37,14 @@ final class Converter {
         }
     }
     func convertToGBP(amount: String, fromCurrency: CurrencyCode) -> Double {
-        let gbpCurrency = "GBP"
+        let gbpCurrency: CurrencyCode = "GBP"
         if fromCurrency == gbpCurrency { return Double(amount) ?? 1.00 }
         var result = 0.00
 
         if let rate = currencies[FromTo(from: fromCurrency, to: gbpCurrency)] {
             result = rate
         } else {
-            let usdCurrency = "USD"
+            let usdCurrency: CurrencyCode = "USD"
             if let fromUSD = currencies[FromTo(from: usdCurrency, to: fromCurrency)],
                 let toGBP = currencies[FromTo(from: usdCurrency, to: gbpCurrency)] {
                     let newRate = toGBP / fromUSD
