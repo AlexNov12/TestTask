@@ -53,7 +53,7 @@ final class ModuleTransactionsView: UIView {
     
     func update(model: Model) {
         self.model = model
-        totalTransactions.text = model.total
+        updateTotal()
         tableView.reloadData()
     }
 }
