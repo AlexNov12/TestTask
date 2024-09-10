@@ -54,7 +54,7 @@ private extension ModuleProductsPresenter {
         let items: [ModuleProductsTableViewCell.Model] = model.map {
             .init(
                 sku: $0.sku,
-                transactions: String($0.transactions.count)
+                count: String($0.transactions.count)
             )
         }
         

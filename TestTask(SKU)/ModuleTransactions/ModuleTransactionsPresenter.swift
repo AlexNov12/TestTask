@@ -15,13 +15,19 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
     
     weak var view: ModuleTransactionsViewProtocol?
     private let formater = Formater()
+    private let currencyHelper = CurrencyHelper()
 
-    var title: String { "Transactions for \(context.sku)" }
+    var title: String { "Transactions for \(sku)" }
     
-    private let context: ModuleTransactionsFactory.Context
+    private let sku: String
+    private let transactions: [Transaction]
     
-    init(context: ModuleTransactionsFactory.Context) {
-        self.context = context
+    init(
+        sku: String,
+        transactions: [Transaction]
+    ) {
+        self.sku = sku
+        self.transactions = transactions
     }
     
     func viewDidLoad() {
@@ -31,19 +37,21 @@ final class ModuleTransactionsPresenter: ModuleTransactionsPresenterProtocol {
 
 private extension ModuleTransactionsPresenter {
     func updateUI() {
-    
-        let totalInGBP = context.transactions.reduce(0.0) { $0 + $1.amountInGBP }
-        let totalFormatted = formater.gbp + formater.format2f(totalInGBP)
         
+        var totalInGBP = 0.0
+        var items = [ModuleTransactionsTableViewCell.Model]()
         
-        // Вот тут у нас должны передаваться строки в конструктор
-        let items: [ModuleTransactionsTableViewCell.Model] = context.transactions.map {
-            .init(
-                amount: formater.makeSymbol(for: $0.currency) + formater.format2f($0.amount),
-                convertedToGBP: formater.gbp + formater.format2f($0.amountInGBP)
+        for transaction in transactions {
+            totalInGBP += transaction.amountInGBP
+            items.append(
+                .init(
+                    amount: currencyHelper.makeSymbol(for: transaction.currency) + formater.format2f(transaction.amount),
+                    amountInGBP: currencyHelper.gbp + formater.format2f(transaction.amountInGBP)
+                )
             )
         }
         
+        let totalFormatted = currencyHelper.gbp + formater.format2f(totalInGBP)
         let viewModel: ModuleTransactionsView.Model = .init(items: items, total: totalFormatted)
         
         view?.update(model: viewModel)

@@ -65,7 +65,7 @@ extension ModuleProductsView: UITableViewDataSource {
         
         let cellModel = ModuleProductsTableViewCell.Model(
             sku: item.sku,
-            transactions: item.transactions
+            count: item.count
         )
         cell.update(with: cellModel)
         return cell

@@ -13,7 +13,7 @@ final class ModuleTransactionsTableViewCell: UITableViewCell {
     
     struct Model {
         let amount: String
-        let convertedToGBP: String
+        let amountInGBP: String
     }
     
     private lazy var amountLabel: UILabel = {
@@ -55,7 +55,7 @@ final class ModuleTransactionsTableViewCell: UITableViewCell {
     
     func update(with model: Model) {
         amountLabel.text = model.amount
-        convertedToGBPLabel.text = model.convertedToGBP
+        convertedToGBPLabel.text = model.amountInGBP
     }
 }
 

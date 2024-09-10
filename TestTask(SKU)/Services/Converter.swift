@@ -8,37 +8,20 @@
 import Foundation
 
 protocol ConverterProtocol {
-    func setupConversionRates(completion: @escaping (Result<[RateResponse], Error>) -> Void)
-    var currencies: [FromTo: Double] { get }
+    func convertToGBP(amount: String, fromCurrency: CurrencyCode)
 }
 
 final class Converter {
+
+    private let converterToDouble = ConverterToDouble()
     private var currencies = [FromTo: Double]()
-    private let formater =  Formater()
-    private let dataLoader = DataLoader()
-    func setupConversionRates(completion: @escaping (Result<[RateResponse], Error>) -> Void) {
-        dataLoader.loadRates { ratesResult in
-            switch ratesResult {
-            case .success(let rates):
-                rates.forEach {
-                    let fromCurrency = $0.from
-                    let toCurrency = $0.to
-                    if let rate = Double($0.rate) {
-                        self.currencies[FromTo(
-                            from: fromCurrency,
-                            to: toCurrency
-                        )] = rate
-                    }
-                }
-                    completion(.success(rates))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
+    private let rateProvider = CurrencyRateProvider()
+    
     func convertToGBP(amount: String, fromCurrency: CurrencyCode) -> Double {
+        self.currencies = rateProvider.getCurrencyRates()
         let gbpCurrency: CurrencyCode = "GBP"
         if fromCurrency == gbpCurrency { return Double(amount) ?? 1.00 }
+        
         var result = 0.00
 
         if let rate = currencies[FromTo(from: fromCurrency, to: gbpCurrency)] {
@@ -53,6 +36,8 @@ final class Converter {
                     result = newRate
                 }
         }
-        return formater.doubleValue(from: amount) * result
+
+        return converterToDouble.makeDoubleValue(from: amount) * result
+        
     }
 }

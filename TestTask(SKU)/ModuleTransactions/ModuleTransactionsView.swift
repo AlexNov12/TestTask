@@ -22,6 +22,7 @@ final class ModuleTransactionsView: UIView {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.text = "£0.00"
         return label
     }()
     
@@ -74,7 +75,7 @@ extension ModuleTransactionsView: UITableViewDataSource {
         
         let cellModel = ModuleTransactionsTableViewCell.Model(
             amount: item.amount,
-            convertedToGBP: item.convertedToGBP
+            amountInGBP: item.amountInGBP
         )
         
         cell.update(with: cellModel)
@@ -88,10 +89,10 @@ private extension ModuleTransactionsView {
         backgroundColor = .systemBackground
         setupSubviews()
         setupConstraints()
-        setupTotal()
+        updateTotal()
     }
     
-    func setupTotal() {
+    func updateTotal() {
         totalTransactions.text = model?.total ?? "£0.00"
     }
     

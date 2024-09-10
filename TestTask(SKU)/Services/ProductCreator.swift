@@ -8,9 +8,10 @@
 import Foundation
 
 final class ProductCreator {
-    private let formater =  Formater()
+    private let converterToDouble = ConverterToDouble()
+    private let converter = Converter()
     
-    func createProducts(from transactions: [TransactionResponse], converter: Converter) -> [ProductModel] {
+    func createProducts(from transactions: [TransactionResponse]) -> [ProductModel] {
         var skuDict = [String: [Transaction]]()
         
         for transaction in transactions {
@@ -19,7 +20,7 @@ final class ProductCreator {
                 fromCurrency: transaction.currency
             )
             let newTransaction = Transaction(
-                amount: formater.doubleValue(from: transaction.amount),
+                amount: converterToDouble.makeDoubleValue(from: transaction.amount),
                 currency: transaction.currency,
                 amountInGBP: amountInGBP
             )
