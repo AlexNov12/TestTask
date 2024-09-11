@@ -12,15 +12,16 @@ protocol ProductServiceProtocol {
 }
 
 final class ProductService: ProductServiceProtocol {
-    private let dataLoader = DataLoader()
-    private let productCreator = ProductCreator()
+    private let dataLoader: DataLoaderProtocol
+    private let productCreator: ProductCreatorProtocol
     
+    init(dataLoader: DataLoaderProtocol, productCreator: ProductCreatorProtocol) {
+        self.dataLoader = dataLoader
+        self.productCreator = productCreator
+    }
 
     func requestProducts(completion: @escaping (Result<[ProductModel], Error>) -> Void) {
-        dataLoader.load(
-            resource: "transactions",
-            type: [TransactionResponse].self
-        ) { transactionsResult in
+        let transactionsResult = dataLoader.load(resource: "transactions", type: [TransactionResponse].self)
             switch transactionsResult {
             case .success(let transactions):
                 let products = self.productCreator.createProducts(from: transactions)
@@ -28,6 +29,5 @@ final class ProductService: ProductServiceProtocol {
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
     }
 }

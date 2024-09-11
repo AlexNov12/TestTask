@@ -7,9 +7,17 @@
 
 import Foundation
 
-final class ProductCreator {
-    private let converterToDouble = ConverterToDouble()
-    private let converter = Converter()
+protocol ProductCreatorProtocol {
+    func createProducts(from transactions: [TransactionResponse]) -> [ProductModel]
+}
+
+
+final class ProductCreator: ProductCreatorProtocol {
+    private let converter: ConverterProtocol
+    
+    init(converter: ConverterProtocol){
+        self.converter = converter
+    }
     
     func createProducts(from transactions: [TransactionResponse]) -> [ProductModel] {
         var skuDict = [String: [Transaction]]()
@@ -20,7 +28,7 @@ final class ProductCreator {
                 fromCurrency: transaction.currency
             )
             let newTransaction = Transaction(
-                amount: converterToDouble.makeDoubleValue(from: transaction.amount),
+                amount: Double(transaction.amount) ?? 0.0,
                 currency: transaction.currency,
                 amountInGBP: amountInGBP
             )

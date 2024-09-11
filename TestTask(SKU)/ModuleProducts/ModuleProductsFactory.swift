@@ -10,7 +10,7 @@ import UIKit
 final class ModuleProductsFactory {
     
     func make() -> UIViewController {
-        let service = ProductService()
+        let service = ProductServiceConfigurator().configureProductService()
         
         let router = ModuleProductsRouter(
             factory: ModuleTransactionsFactory()

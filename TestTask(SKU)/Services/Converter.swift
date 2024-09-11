@@ -8,17 +8,21 @@
 import Foundation
 
 protocol ConverterProtocol {
-    func convertToGBP(amount: String, fromCurrency: CurrencyCode)
+    func convertToGBP(amount: String, fromCurrency: CurrencyCode) -> Double
 }
 
-final class Converter {
+final class Converter: ConverterProtocol {
 
-    private let converterToDouble = ConverterToDouble()
     private var currencies = [FromTo: Double]()
-    private let rateProvider = CurrencyRateProvider()
+    private let rateProvider: CurrencyRateProviderProtocol
+    
+    init(rateProvider: CurrencyRateProviderProtocol) {
+        self.rateProvider = rateProvider
+        self.currencies = rateProvider.getCurrencyRates()
+    }
     
     func convertToGBP(amount: String, fromCurrency: CurrencyCode) -> Double {
-        self.currencies = rateProvider.getCurrencyRates()
+
         let gbpCurrency: CurrencyCode = "GBP"
         if fromCurrency == gbpCurrency { return Double(amount) ?? 1.00 }
         
@@ -37,7 +41,7 @@ final class Converter {
                 }
         }
 
-        return converterToDouble.makeDoubleValue(from: amount) * result
+        return (Double(amount) ?? 0.0) * result
         
     }
 }

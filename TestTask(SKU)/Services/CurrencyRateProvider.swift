@@ -13,21 +13,29 @@ protocol CurrencyRateProviderProtocol {
 
 final class CurrencyRateProvider: CurrencyRateProviderProtocol {
     private var ratesDict = [FromTo: Double]()
-    private let dataLoader = DataLoader()
+    private let dataLoader: DataLoaderProtocol
+    
+    init(dataLoader: DataLoaderProtocol) {
+        self.dataLoader = dataLoader
+        loadCurrencyRates()
+    }
+    
+    private func loadCurrencyRates() {
+        let loadedRates = dataLoader.load(resource: "rates", type: [RateResponse].self)
+        switch loadedRates {
+        case .success(let rateResponses):
+            for rate in rateResponses {
+                if let rateValue = Double(rate.rate) {
+                    ratesDict[FromTo(from: rate.from, to: rate.to)] = rateValue
+                }
+            }
+        case .failure(let error):
+            print("Ошибка загрузки курсов валют: \(error)")
+            
+        }
+    }
     
     func getCurrencyRates() -> [FromTo: Double] {
-        dataLoader.load(resource: "rates", type: [RateResponse].self) { result in
-            switch result {
-            case .success(let rateResponses):
-                for rate in rateResponses {
-                    if let rateValue = Double(rate.rate) {
-                        self.ratesDict[FromTo(from: rate.from, to: rate.to)] = rateValue
-                    }
-                }
-            case .failure(let error):
-                print("Ошибка загрузки курсов валют: \(error)")
-            }
-        }
         return ratesDict
     }
 }
